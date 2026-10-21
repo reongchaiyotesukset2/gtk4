@@ -1,0 +1,9 @@
+[package]
+name = "gtk4"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+adw = {package = "libadwaita", version = "0.9", features = ["v1_6"]}
+anyhow = "1.0"
+gtk = {package = "gtk4", version = "0.11", features = ["v4_10"]}
