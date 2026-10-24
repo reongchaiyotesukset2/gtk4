@@ -1,17 +1,19 @@
+#![allow(linker_messages)]
 use gtk::{gio, glib};
 
 mod application;
+mod widgets;
 
-use application::Application;
+use gettextrs::*;
+use crate::application::Application;
 
-fn main(){
+
+fn main()->glib::ExitCode{
     gtk::init().expect("failed to init gtk");
 
-  //  let res = gio::Resource::load(config::PKGDATADI>
-        //.expect("Could not load resources");
-    //gio::resources_register(&res);
-
-   // glib::set_application_name(&gettext("Authentica>
-
+    let res = gio::Resource::load("data/resources.gresource")
+        .expect("Could not load resources");
+     gio::resources_register(&res);
+     glib::set_application_name(&gettext("gtk4db"));
     Application::run()
 }

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.94.1 -->
+<interface>
+  <!-- interface-name window.ui -->
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="Window" parent="AdwApplicationWindow"/>
+</interface>
