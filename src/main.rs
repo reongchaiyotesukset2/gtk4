@@ -14,6 +14,6 @@ fn main()->glib::ExitCode{
     let res = gio::Resource::load("data/resources.gresource")
         .expect("Could not load resources");
      gio::resources_register(&res);
-     glib::set_application_name(&gettext("gtk4db"));
+     glib::set_application_name("gtk4db");
     Application::run()
 }

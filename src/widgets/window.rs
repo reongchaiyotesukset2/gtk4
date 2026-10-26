@@ -18,6 +18,7 @@ mod imp {
     use super::*;
 
     #[derive(Default,gtk::CompositeTemplate, glib::Properties)]
+    //org/example/myapp
     #[template(resource = "/org/example/myapp/window.ui")]
   
     #[properties(wrapper_type = super::Window)]

@@ -12,19 +12,19 @@ use crate::{
 
 //use adw::prelude::*;
 mod imp {
- use std::cell::{Cell, RefCell};
-use adw::subclass::prelude::*;
+    use std::cell::{Cell, RefCell};
+    use adw::subclass::prelude::*;
     use super::*;
 
     #[derive(Default, glib::Properties)]   
     #[properties(wrapper_type = super::Application)]
     pub struct Application {
-      pub window: RefCell<Option<glib::WeakRef<Window>>>,
+       pub window: RefCell<Option<glib::WeakRef<Window>>>,
     }
 
 
-        #[glib::object_subclass]
-        impl ObjectSubclass for Application {
+       #[glib::object_subclass]
+       impl ObjectSubclass for Application {
             const NAME: &'static str = "Application";
             type ParentType = adw::Application;
             type Type = super::Application;
@@ -35,6 +35,9 @@ use adw::subclass::prelude::*;
               fn startup(&self) {
                  self.parent_startup();
                   let app = self.obj();
+                  let quit_action = gio::ActionEntry::builder("quit")
+                  .activate(|app : &Self::Type, _, _| app.quit())
+                  .build();
               }
               fn activate(&self) {
                
@@ -47,9 +50,7 @@ use adw::subclass::prelude::*;
         }
         impl AdwApplicationImpl for Application{}
         impl GtkApplicationImpl for Application{}
-    impl Application{
-
-    }
+        impl Application{}
 }
 
 glib::wrapper! {
@@ -61,7 +62,7 @@ impl Application{
 
  pub fn run() -> glib::ExitCode {
      let app = glib::Object::builder::<Application>()
-            .property("application-id", "gtk3.myapp")
+            .property("application-id", "gtk4db")
             .property("flags", gio::ApplicationFlags::HANDLES_OPEN)
             .build();
      app.run()
