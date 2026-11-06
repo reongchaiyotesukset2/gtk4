@@ -1,12 +1,15 @@
 use gtk::{
     gio,
-    glib::{self},
+    glib::{self,clone},
     subclass::prelude::*,
     prelude::*,
 };
 
 use crate::{
-   widgets::{Window},
+  models::{
+     ProvidersModel,
+    },
+   widgets::{Window,BackupDialog},
    
 };
 
@@ -38,13 +41,24 @@ mod imp {
                   let quit_action = gio::ActionEntry::builder("quit")
                   .activate(|app : &Self::Type, _, _| app.quit())
                   .build();
+
+                let show_backup_dialog_action = gio::ActionEntry::builder("show-backup-dialog")
+                  .activate(|app : &Self::Type, _, _|{
+                    
+                  
+                  }).build();
+
+                app.add_action_entries([quit_action]);
+                app.set_accels_for_action("app.quit", &["<Control>q"]);
+
+                
               }
               fn activate(&self) {
                
                  let app = self.obj();
                  let window = Window::new(&app);
                   window.present();
-                  //self.window.replace(Some(window.downgrade()));
+                  self.window.replace(Some(window.downgrade()));
           }
             
         }
@@ -62,7 +76,7 @@ impl Application{
 
  pub fn run() -> glib::ExitCode {
      let app = glib::Object::builder::<Application>()
-            .property("application-id", "gtk4db")
+            .property("application-id", "org.example.Gtk4db")
             .property("flags", gio::ApplicationFlags::HANDLES_OPEN)
             .build();
      app.run()
@@ -77,5 +91,7 @@ impl Application{
             .upgrade()
             .unwrap()
     }
+  
+  
 
 }

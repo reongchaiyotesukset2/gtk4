@@ -3,6 +3,7 @@ use gtk::{gio, glib};
 
 mod application;
 mod widgets;
+mod models;
 
 use gettextrs::*;
 use crate::application::Application;

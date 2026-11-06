@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="adw" version="1.5"/>
+
+  <template class="MyPreferencesDialog" parent="AdwPreferencesDialog">
+    <property name="title" translatable="yes">ตั้งค่าแอปพลิเคชัน</property>
+    <property name="search-enabled">true</property>
+
+    <!-- หน้าที่ 1: ทั่วไป (General) -->
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="title" translatable="yes">ทั่วไป</property>
+        <property name="icon-name">preferences-system-symbolic</property>
+
+        <!-- กลุ่มที่ 1: ลักษณะที่ปรากฏ -->
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">การแสดงผล</property>
+            <property name="description" translatable="yes">ปรับแต่งธีมและรูปแบบหน้าตาของแอป</property>
+
+            <!-- แถวเลือกธีม (Combo Row) -->
+            <child>
+              <object class="AdwComboRow" id="theme_row">
+                <property name="title" translatable="yes">รูปแบบธีม</property>
+                <property name="subtitle" translatable="yes">เลือกโหมดสว่างหรือมืด</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">ค่าเริ่มต้นระบบ</item>
+                      <item translatable="yes">โหมดสว่าง</item>
+                      <item translatable="yes">โหมดมืด</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+        <!-- กลุ่มที่ 2: การทำงานทั่วไป -->
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">พฤติกรรม</property>
+
+            <!-- แถวเปิดปิดสวิตช์ (Switch Row) -->
+            <child>
+              <object class="AdwActionRow" id="notifications_row">
+                <property name="title" translatable="yes">การแจ้งเตือน</property>
+                <property name="subtitle" translatable="yes">แสดงการแจ้งเตือนเดสก์ท็อป</property>
+                <property name="activatable-widget">notifications_switch</property>
+                <child type="suffix">
+                  <object class="GtkSwitch" id="notifications_switch">
+                    <property name="valign">center</property>
+                    <property name="active">true</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+    <!-- หน้าที่ 2: เกี่ยวกับ (About / Advanced) -->
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="title" translatable="yes">ขั้นสูง</property>
+        <property name="icon-name">applications-engineering-symbolic</property>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">การจัดการข้อมูล</property>
+
+            <!-- แถวปุ่มกด (Button Row / Action Row) -->
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">ล้างแคชข้อมูล</property>
+                <property name="subtitle" translatable="yes">ลบไฟล์ชั่วคราวทั้งหมดที่แอปสร้างขึ้น</property>
+                <child type="suffix">
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">ล้างข้อมูล</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="destructive-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+  </template>
+</interface>
+
